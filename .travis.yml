@@ -59,7 +59,6 @@ matrix:
     - mv external faustgen~
     - zip -r "faustgen_tilde-$release_arch-sources.zip" faustgen~
     - ./make-dist.sh
-    - ls
 deploy:
   provider: releases
   skip_cleanup: true
