@@ -30,7 +30,7 @@ set(INSTALLED_FAUST "ON"  CACHE BOOL  "Use an installed Faust library")
 ## library. Default is static linking. Note that this option only has an
 ## effect if INSTALLED_FAUST is ON. Static linking is always used when linking
 ## with the included Faust version.
-set(STATIC_FAUST "ON"  CACHE BOOL  "Link the installed Faust library statically if possible")
+set(STATIC_FAUST "OFF"  CACHE BOOL  "Link the installed Faust library statically if possible")
 
 message(STATUS "Installed Faust library: ${INSTALLED_FAUST}")
 if(INSTALLED_FAUST)
