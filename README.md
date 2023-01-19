@@ -86,6 +86,12 @@ cmake .. -DFAUST_LIBRARY=/some/path/to/libfaust.a
 
 cmake should then be able to find the other required files (include and dsp library files) on its own. If all else fails, just use the included Faust source, this should always work.
 
+As of Pd 0.51-0 you can compile a ["Double precision" Pd](http://msp.ucsd.edu/Pd_documentation/x6.htm#s6.6). If you intend to use faustgen2~ in such an environment, you must also compile it for double precision with the following option:
+
+~~~shell
+cmake .. -DPD_FLOATSIZE64=ON
+~~~
+
 ## Install
 
 Once the compilation finishes, you can install the external by running `make install` or `cmake --install .` from the build directory. By default, installation will go into the lib/pd/extra/faustgen2~ directory on Linux, and to just faustgen2~ on Mac and Windows, but this directory can be changed by setting the INSTALL_DIR variable at configuration time (`cmake .. -DINSTALL_DIR=some/path`). In any case, this directory is taken relative to cmake's CMAKE_INSTALL_PREFIX, which has an OS-specific default (e.g., on Linux it is /usr/local), but can be set with the `--prefix` option at installation time when running `cmake --install .`, see below.

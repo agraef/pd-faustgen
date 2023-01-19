@@ -4,6 +4,11 @@ set(CMAKE_SUPPRESS_REGENERATION true)
 set(CMAKE_MACOSX_RPATH Off)
 set(CMAKE_OSX_DEPLOYMENT_TARGET 10.9)
 
+## Set this to ON to compile the Pure Data external with double precision support.
+## This implies using it with Pure Data compiled with the flag PD_FLOATSIZE=64", which isn't the default.
+set(PD_FLOATSIZE64 "OFF"  CACHE BOOL  "Compile externals targeting Pd double precision (compiled with PD_FLOATSIZE=64)")
+message(STATUS "Using PD_FLOATSIZE=64: ${PD_FLOATSIZE64}")
+
 include(pd.build/pd.cmake)
 
 project(faustgen2~ C)
@@ -19,7 +24,7 @@ endif()
 ## faustgen2~, in which case compilation will fail. If you plan to upload the
 ## external to Deken, we recommend leaving this option OFF, since that will
 ## gurantee that libfaust is linked statically into the external.
-set(INSTALLED_FAUST "OFF"  CACHE BOOL  "Use an installed Faust library")
+set(INSTALLED_FAUST "ON"  CACHE BOOL  "Use an installed Faust library")
 
 ## In addition, set this to OFF in order to link to the shared libfaust
 ## library. Default is static linking. Note that this option only has an
