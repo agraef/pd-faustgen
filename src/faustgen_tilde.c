@@ -397,6 +397,13 @@ static void faustgen_tilde_compile(t_faustgen_tilde *x)
             x->f_dsp_factory  = factory;
             x->f_dsp_instance = instance;
 
+            /* Register after the JIT initializes its lazy static mutexes. */
+            static int exit_cleanup_registered = 0;
+            if (!exit_cleanup_registered) {
+                atexit(deleteAllCDSPFactories);
+                exit_cleanup_registered = 1;
+            }
+
             if (faust_ui_manager_get_polyphony(x->f_ui_manager, &midi, &npoly,
                                                &freq, &gain, &gate)) {
               faust_new_voices(x, npoly);
